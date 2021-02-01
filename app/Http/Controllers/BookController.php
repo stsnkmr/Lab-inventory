@@ -27,7 +27,9 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $book = new Book();
+
+        return view('books.create', compact('book'));
     }
 
     /**
@@ -79,11 +81,12 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect()->action('BookController@index');
     }
 }

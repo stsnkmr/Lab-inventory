@@ -15,14 +15,16 @@
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#">Separated link</a></li>
         </ul>
-        <button type="button" class="btn btn-primary col-mb-1 text-right" style="margin-right: 0.3em">新規登録</button>
+        <a href="{{ action('BookController@create') }}">
+            <button type="button" class="btn btn-primary">新規登録</button>
+        </a>
         <button type="button" class="btn btn-primary col-mb-1 text-right" style="margin-right: 0.3em">新規一括登録</button>
     </div>
     <div class="card">
         <div class="card-body">
             <table class="table text-center">
                 <thead class="table-light">
-                    <th>ID</th>
+                    {{-- <th>ID</th> --}}
                     <th class="text-left">タイトル</th>
                     <th class="text-left">著者</th>
                     <th>アクション</th>
@@ -30,8 +32,8 @@
                 <tbody>
                     @foreach ($items as $book)
                         <tr>
-                            <td style="width: 5%">{{ $book->id }}</td>
-                            <td style="width: 35%" class="text-left">{{ $book->title }}</td>
+                            {{-- <td style="width: 5%">{{ $book->id }}</td> --}}
+                            <td style="width: 40%" class="text-left">{{ $book->title }}</td>
                             <td style="width: 30%" class="text-left">{{ $book->author }}</td>
                             <td style="width: 30%">
                                 <a href="{{ action('BookController@show', [$book]) }}">
@@ -40,7 +42,11 @@
                                 <a href="{{ action('BookController@edit', [$book]) }}">
                                     <button type="button" class="btn btn-primary">編集</button>
                                 </a>
-                                <button type="button" class="btn btn-danger">削除</button>
+                                <div style="display: inline-flex">
+                                    {{ Form::open(['method' => 'delete', 'url' => action('BookController@destroy', [$book])]) }}
+                                    {{ Form::submit('削除', ['class' => 'btn btn-danger']) }}
+                                    {{ Form::close() }}
+                                </div>
                             </td>
                         </tr>
                     @endforeach

@@ -36,8 +36,8 @@
             </table>
         </div>
         <div class="col-sm">
-            <img src={{ $book->imgURL }} class="rounded" alt={{ $book->title }}><
-        /div>
+            <img src={{ $book->imgURL }} class="rounded" alt={{ $book->title }}>
+        </div>
     </div>
 </div>
 @endsection

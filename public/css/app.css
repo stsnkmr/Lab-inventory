@@ -5247,7 +5247,6 @@ input[type=button].btn-block {
 }
 
 .pagination {
-  justify-content: center;
   display: flex;
   padding-left: 0;
   list-style: none;
