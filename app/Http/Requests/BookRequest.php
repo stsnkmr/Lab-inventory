@@ -26,11 +26,13 @@ class BookRequest extends FormRequest
         return [
             'title' => 'required',
             'author' => 'required',
-            'isbn' => 'required|regex:[0-9\-]{9,16}[0-9X]',
-            'publisher' => 'required',
-            'release_date' => 'required',
+            'isbn' => 'nullable',
+            // 'isbn' => 'nullable|regex:[0-9\-]{9,16}[0-9X]',
+            'description' => 'nullable',
+            'publisher' => 'nullable',
+            'published_date' => 'nullable|date',
             'imgURL' => 'nullable|url',
-            'amazonURL' => 'nullable|url',
+            'buyURL' => 'nullable|url',
         ];
     }
 }

@@ -10,4 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('book', 'BookController');
+Route::get('book/choose', 'BookController@choose');
+Route::get('book/choose/form', 'BookController@create_with_form');
+Route::post('book/choose/form', 'BookController@create_with_form');
+Route::get('book/choose/barcode', 'BookController@create_with_barcode');
+Route::post('book/choose/barcode', 'BookController@create_with_barcode');
+Route::resource('book', 'BookController', ['except' => ['create']]);
+
+Route::get('/home', 'HomeController@index')->name('home');

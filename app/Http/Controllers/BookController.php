@@ -15,32 +15,22 @@ class BookController extends Controller
      */
     public function index()
     {
-        $items = Book::orderBy('id', 'asc')->paginate(10);
-        $param = ['items' => $items];
+        $books = Book::orderBy('id', 'asc')->paginate(10);
+        $param = ['books' => $books];
         return view('books.index', $param);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $book = new Book();
-
-        return view('books.create', compact('book'));
-    }
-
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\BookRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
-        //
+        $book = new Book();
+        $book->fill($request->validated());
+        $book->save();
+        return redirect()->action('BookController@index');
     }
 
     /**
@@ -88,5 +78,26 @@ class BookController extends Controller
     {
         $book->delete();
         return redirect()->action('BookController@index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function choose()
+    {
+        return view('books.choose');
+    }
+
+    public function create_with_form()
+    {
+        $book = new Book();
+        return view('books.create.create_with_form', compact('book'));
+    }
+
+    public function create_with_barcode()
+    {
+        return view('books.create.create_with_barcode');
     }
 }

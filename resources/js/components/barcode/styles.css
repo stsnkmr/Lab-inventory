@@ -1,0 +1,14 @@
+.App {
+    font-family: sans-serif;
+    /* text-align: center; */
+}
+.drawingBuffer {
+    display: none;
+}
+video{
+    width: 80%;
+    margin: 5% 5%;
+}
+canvas{
+    width: 80%;
+}

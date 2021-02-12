@@ -17,12 +17,15 @@ class CreateBooksTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('author');
-            $table->string('publisher');
-            $table->date('release_date');
-            $table->string('isbn');
-            $table->longText('imgURL')->nullable();
-            $table->text('amazonURL')->nullable();
-            $table->timestamps();
+            $table->string('publisher')->nullable();
+            $table->text('description')->nullable();
+            $table->date('published_date')->nullable();
+            $table->string('isbn')->nullable();
+            $table->text('imgURL')->nullable();
+            $table->text('buyURL')->nullable();
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
+            $table->softDeletes();
         });
     }
 
