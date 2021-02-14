@@ -51,9 +51,7 @@
                 </div>
             </div>
             <div class="mx-auto" style="margin-top: 4%">
-                <a href="{{ action('BookController@index') }}">
-                    <button class="btn btn-block btn-secondary">戻る</button>
-                </a>
+                <button onclick="history.back()" class="btn btn-block btn-secondary">戻る</button>
             </div>
         </div>
     </div>

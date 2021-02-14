@@ -6413,7 +6413,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".App {\n    font-family: sans-serif;\n    /* text-align: center; */\n}\n.drawingBuffer {\n    display: none;\n}\nvideo{\n    width: 80%;\n    margin: 5% 5%;\n}\ncanvas{\n    width: 80%;\n}\n", ""]);
+exports.push([module.i, ".App {\n    font-family: sans-serif;\n    /* text-align: center; */\n}\n.drawingBuffer {\n    display: none;\n}\n\nvideo {\n    width: 100%;\n\n}\ncanvas {\n    width: 80%;\n}\n", ""]);
 
 // exports
 
@@ -66595,20 +66595,10 @@ var App = function App() {
       books = _useState4[0],
       setBooks = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
-      _useState6 = _slicedToArray(_useState5, 2),
-      results = _useState6[0],
-      setResults = _useState6[1];
-
   var getBookDetails = function getBookDetails(isbn) {
     Object(axios__WEBPACK_IMPORTED_MODULE_1__["get"])('https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn).then(function (res) {
-      try {
-        console.log(isbn);
-        var detail = res.data.items[0].volumeInfo;
-        setBooks([].concat(_toConsumableArray(books), [detail]));
-      } catch (_unused) {
-        console.log("バーコード読み取りエラー");
-      }
+      console.log(res.data.totalItems);
+      if (res.data.totalItems == 0) setScanning(true);else setBooks([].concat(_toConsumableArray(books), [res.data.items[0].volumeInfo]));
     });
   };
 
@@ -66626,49 +66616,60 @@ var App = function App() {
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/book', params);
       console.log("成功!" + book.title);
     });
-    location.href = "/book";
+    setBooks([]);
+  };
+
+  var removeBook = function removeBook(target) {
+    books.splice(target, 1);
+    console.log(books);
+    setBooks(_toConsumableArray(books));
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return setScanning(!scanning);
     },
     className: scanning ? 'btn btn-secondary btn-block' : 'btn btn-primary btn-block'
-  }, scanning ? 'Stop' : 'Start'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, scanning ? 'Stop' : 'Start'), scanning ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Scanner__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    setStop: function setStop() {
+      return setScanning(false);
+    },
+    onDetected: function onDetected(result) {
+      return getBookDetails(result.codeResult.code);
+    }
+  }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick(result) {
       return onSubmit(result);
     },
     className: "btn btn-primary btn-block"
-  }, "\u767B\u9332"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, "\u767B\u9332"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    className: "table"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", {
+    className: "overflow-scroll"
+  }, books.map(function (book, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+      key: index
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, book.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "btn btn-danger",
+      onClick: function onClick() {
+        return removeBook(index);
+      }
+    }, "\xD7")));
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/book"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick(result) {
       return onSubmit(result);
     },
     className: "btn btn-secondary btn-block"
-  }, "\u623B\u308B"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-    className: "table"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", {
-    className: "overflow-scroll"
-  }, books ? books.map(function (book, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-      key: i
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, i + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, book.title));
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "\u307E\u3060\u3042\u308A\u307E\u305B\u3093\u3088\uFF01\uFF01\uFF01"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-6"
-  }, scanning ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Scanner__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    onDetected: function onDetected(result) {
-      return getBookDetails(result.codeResult.code);
-    }
-  }) : null)));
-}; // export default App
-
+  }, "\u623B\u308B")))));
+};
 
 react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), document.getElementById('barcode'));
 
@@ -66775,6 +66776,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+function getMedian(arr) {
+  arr.sort(function (a, b) {
+    return a - b;
+  });
+  var half = Math.floor(arr.length / 2);
+
+  if (arr.length % 2 === 1) {
+    return arr[half];
+  }
+
+  return (arr[half - 1] + arr[half]) / 2;
+}
+
+function getMedianOfCodeErrors(decodedCodes) {
+  var errors = decodedCodes.filter(function (x) {
+    return x.error !== undefined;
+  }).map(function (x) {
+    return x.error;
+  });
+  var medianOfErrors = getMedian(errors);
+  return medianOfErrors;
+}
+
 var Scanner = /*#__PURE__*/function (_Component) {
   _inherits(Scanner, _Component);
 
@@ -66792,10 +66816,15 @@ var Scanner = /*#__PURE__*/function (_Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "_onDetected", function (result) {
-      _this.props.onDetected(result); // console.log("_ondetected");
+      var err = getMedianOfCodeErrors(result.codeResult.decodedCodes);
 
+      if (err < 0.1) {
+        _this.props.onDetected(result);
 
-      _ericblade_quagga2__WEBPACK_IMPORTED_MODULE_1___default.a.stop();
+        _ericblade_quagga2__WEBPACK_IMPORTED_MODULE_1___default.a.stop();
+
+        _this.props.setStop();
+      }
     });
 
     return _this;
@@ -66829,12 +66858,12 @@ var Scanner = /*#__PURE__*/function (_Component) {
 
         _ericblade_quagga2__WEBPACK_IMPORTED_MODULE_1___default.a.start();
       });
-      _ericblade_quagga2__WEBPACK_IMPORTED_MODULE_1___default.a.onDetected(this._onDetected); // console.log("aa");
+      _ericblade_quagga2__WEBPACK_IMPORTED_MODULE_1___default.a.onDetected(this._onDetected);
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      _ericblade_quagga2__WEBPACK_IMPORTED_MODULE_1___default.a.offDetected(this._onDetected); // console.log("unmount");
+      _ericblade_quagga2__WEBPACK_IMPORTED_MODULE_1___default.a.offDetected(this._onDetected);
     }
   }, {
     key: "render",

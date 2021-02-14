@@ -5,26 +5,25 @@
         {{ Breadcrumbs::render('book') }}
     </div> --}}
     <div class="row justify-content-center">
-        <div class="col-md-12 col-sm-12">
+        <div class="col-md-10 col-sm-10">
             <h2>文献リスト</h2>
             <div class="text-right">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 0.3em">
-                        Sort
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Separated link</a></li>
-                    </ul>
+                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ソート
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/book?sort=title">タイトル</a>
+                        <a class="dropdown-item" href="/book?sort=author">著者</a>
+                        <a class="dropdown-item" href="/book?sort=published_date">発売日</a>
+                      </div>
                     <a href="{{ action('BookController@choose') }}">
                         <button type="button" class="btn btn-primary">新規登録</button>
                     </a>
                 </div>
                 <hr>
             </div>
+            <div class="card"></div>
             <div class="card">
                 <div class="card-body">
                     <table class="table text-center">
@@ -39,7 +38,7 @@
                                 <tr>
                                     <td style="width: 40%" class="text-left">{{ $book->title }}</td>
                                     <td style="width: 15%" class="text-left">{{ $book->author }}</td>
-                                    <td style="width: 25%" class="text-left">{{ $book->published_date }}</td>
+                                    <td style="width: 15%" class="text-left">{{ $book->published_date }}</td>
                                     <td style="width: 30%">
                                         <a href="{{ action('BookController@show', [$book]) }}">
                                             <button type="button" class="btn btn-primary">詳細</button>
@@ -64,3 +63,8 @@
     </div>
 </div>
 @endsection('content')
+<style>
+    .pagination {
+        justify-content: center;
+    }
+</style>

@@ -5,10 +5,11 @@
 .drawingBuffer {
     display: none;
 }
-video{
-    width: 80%;
-    margin: 5% 5%;
+
+video {
+    width: 100%;
+
 }
-canvas{
+canvas {
     width: 80%;
 }

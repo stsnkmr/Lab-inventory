@@ -25,12 +25,11 @@
                     {{ Form::text('buyURL', $book->buyURL, ['class' => 'form-control', 'placeholder' => 'buyURL']) }}
                     <div style="margin-top: 3%">
                         {{ Form::submit("決定", ['class' => 'btn btn-primary btn-block']) }}
-                    </div>
                 {{ Form::close() }}
-                <div class="mx-auto">
-                    <a href="{{ action('BookController@index') }}">
-                        <button class="btn btn-block btn-secondary">戻る</button>
-                    </a>
+                        <a href="{{ action('BookController@index') }}">
+                            <button class="btn btn-block btn-secondary" style="margin-top: 1%">戻る</button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
