@@ -10,14 +10,13 @@ class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::orderBy('id', 'asc')->paginate(10);
-        $param = ['books' => $books];
-        return view('books.index', $param);
+        $books = Book::sortable()->paginate(10);
+        return view('books.index', compact('books'));
     }
     /**
      * Store a newly created resource in storage.
@@ -99,5 +98,19 @@ class BookController extends Controller
     public function create_with_barcode()
     {
         return view('books.create.create_with_barcode');
+    }
+
+    public function search(Request $request)
+    {
+        $search_type = $request->search_type;
+        $keyword = $request->keyword;
+        if (!isset($keyword)){
+            return redirect()->action('BookController@index');
+        }
+        $books = Book::where($search_type, 'LIKE', "%{$keyword}%")
+        ->orderBy('id', 'asc')
+        ->paginate(10);
+
+        return view('books.search', compact('books'));
     }
 }

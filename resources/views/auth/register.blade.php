@@ -12,6 +12,25 @@
                         @csrf
 
                         <div class="form-group row">
+                            <label for="role" class="col-md-4 col-form-label text-md-right">Role</label>
+
+                            <div class="col-md-6">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" id="role" value=1 disabled>
+                                    <label class="form-check-label" for="role">管理者</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" id="role" value=2 disabled>
+                                    <label class="form-check-label" for="role">admin</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" id="role" value=3 checked>
+                                    <label class="form-check-label" for="role">一般</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">

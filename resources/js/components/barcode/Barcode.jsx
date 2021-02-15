@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Scanner from './Scanner';
 import './styles.css';
 
-const App = () => {
+const Barcode = () => {
     const [scanning, setScanning] = useState(true);
     const [books, setBooks] = useState([]);
 
@@ -67,4 +67,4 @@ const App = () => {
         </>
     )
 }
-ReactDOM.render(<App />, document.getElementById('barcode'))
+ReactDOM.render(<Barcode />, document.getElementById('barcode'))

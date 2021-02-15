@@ -1,30 +1,14 @@
-@extends('layouts.app')
-@section('content')
+@include('layouts.app')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10 col-sm-10">
-            <h2>書籍リスト</h2>
-            <hr>
+        <div class="col-md-10">
+            <h2>検索結果</h2>
             @include('layouts.search_box')
-            <div class="text-right">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        ソート
-                      </button>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item">@sortablelink('title', 'タイトル')</a>
-                        <a class="dropdown-item">@sortablelink('author', '著者')</a>
-                        <a class="dropdown-item">@sortablelink('published_at', '出版日')</a>
-                      </div>
-                    @can('admin-higher')
-                    <a href="{{ action('BookController@choose') }}">
-                        <button type="button" class="btn btn-primary">新規登録</button>
-                    </a>
-                    @endcan
-                </div>
-                <hr>
-            </div>
-            <h4>{{ $books->total() }}件中{{ $books->count() }}件表示中です。</h4>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h4>{{ $books->total() }}件ヒットしました。</h4>
             <div class="card">
                 <div class="card-body">
                     <table class="table text-center">
@@ -75,16 +59,9 @@
                             @endforeach
                         </tbody>
                     </table>
-
                     {{ $books->appends(request()->query())->links() }}
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection('content')
-<style>
-    .pagination {
-        justify-content: center;
-    }
-</style>

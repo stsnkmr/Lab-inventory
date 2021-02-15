@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{--  <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -13,13 +13,16 @@
     h1 { font-size: 18px; }
     p { margin-left: 10px; }
   </style>
-</head>
-<body>
-  <div class="error-wrap">
-    <section>
-      <h1>403 Forbidden</h1>
-      <p>You do not have access.</p>
-    </section>
-  </div>
-</body>
-</html>
+</head>  --}}
+@include('layouts.app')
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <section>
+                <h1>403 Forbidden</h1>
+                <p>ユーザー権限が違います。</p>
+            </section>
+        </div>
+    </div>
+</div>
+
