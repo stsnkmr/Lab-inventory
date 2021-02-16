@@ -28,8 +28,13 @@ Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
 });
 // ログインしているユーザー
 Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
+    // 本検索
+    Route::get('book/search', 'BookController@search')->name('book.search');
     // 本一覧
     Route::get('book', 'BookController@index')->name('book.index');
-    Route::get('book/search', 'BookController@search')->name('book.search');
     Route::get('book/{book}', 'BookController@show')->name('book.show');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

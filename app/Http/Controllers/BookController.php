@@ -105,7 +105,6 @@ class BookController extends Controller
         $books = Book::where($search_type, 'LIKE', "%{$keyword}%")
         ->orderBy('id', 'asc')
         ->paginate(10);
-
         return view('books.search', compact('books'));
     }
 
