@@ -29,7 +29,6 @@
 ### 登録手法選択画面
 ![ScreenShot3](https://github.com/stsnkmr/Lab-inventory/blob/images/imgs/lab-inventory-screenshot3.png)
 ### バーコード登録画面
-![ScreenShot4](https://github.com/stsnkmr/Lab-inventory/blob/images/imgs/lab-inventory-screenshot4.png)
 ![ScreenShot5](https://github.com/stsnkmr/Lab-inventory/blob/images/imgs/lab-inventory-screenshot5.png)
 ### 詳細画面
 ![ScreenShot6](https://github.com/stsnkmr/Lab-inventory/blob/images/imgs/lab-inventory-screenshot6.png)
