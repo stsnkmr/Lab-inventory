@@ -7,7 +7,6 @@ import './styles.css';
 const Barcode = () => {
     const [scanning, setScanning] = useState(true);
     const [books, setBooks] = useState([]);
-    const [alert, setAlert] = useState(false);
     const getBookDetails = (isbn) => {
         get('https://www.googleapis.com/books/v1/volumes?q=isbn:'+isbn).then(res => {
             if (res.data.totalItems == 0) {
@@ -25,7 +24,7 @@ const Barcode = () => {
             params.append('description', book.description);
             params.append('isbn', book.industryIdentifiers[1].identifier);
             params.append('publisher', book.publisher);
-            params.append('published_year', book.publishedDate);
+            params.append('published_year', Number(book.publishedDate.substr(0, 4))); //年度のみを切り出し
             params.append('imgURL', book.imageLinks.thumbnail);
             params.append('buyURL', book.infoLink);
             axios.post('/book', params);
