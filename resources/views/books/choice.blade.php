@@ -11,7 +11,9 @@
                         <img class="bd-placeholder-img card-img-top" src="{{ asset('images/nimotsu_picking_barcode_woman.png') }}" alt="バーコード登録画像">
                         <div class="card-body">
                             <h5 class="card-title">バーコード登録</h5>
-                            <p class="card-text">[推奨]本の裏表紙のISBNのバーコードを読み取り、登録します。（複数登録可能）</p>
+                            <p class="card-text">[推奨]本の裏表紙のISBNのバーコードを読み取り、登録します。（複数登録可能）</br>
+                                (注意:978or979から始まるバーコードを読み取るようにしてください。そのほかのバーコードは手で隠してください。)
+                            </p>
                         </div>
                     </a>
                 </div>

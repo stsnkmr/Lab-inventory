@@ -21,7 +21,7 @@
                             <th class="text-left">出版社</th>
                             <th>アクション</th>
                             @elsecan('admin-higher') {{-- adminのみ表示 --}}
-                            <th class="text-left  ">登録日</th>
+                            <th class="text-left">登録日</th>
                             <th>アクション</th>
                             @endcan
                         </thead>
