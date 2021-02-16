@@ -23,8 +23,8 @@ class CreateBooksTable extends Migration
             $table->string('isbn')->nullable();
             $table->text('imgURL')->nullable();
             $table->text('buyURL')->nullable();
-            $table->timestamp('updated_at')->useCurrent();
-            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->nullable();
+            $table->timestamp('created_at')->useCurrent()->nullable();
             $table->softDeletes();
         });
     }
