@@ -11,7 +11,6 @@ const Barcode = () => {
     const getBookDetails = (isbn) => {
         get('https://www.googleapis.com/books/v1/volumes?q=isbn:'+isbn).then(res => {
             if (res.data.totalItems == 0) {
-                setAlert("notfound");
                 setScanning(true);
             }
             else setBooks([...books, res.data.items[0].volumeInfo]);
