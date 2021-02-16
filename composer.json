@@ -12,11 +12,14 @@
         "barryvdh/laravel-debugbar": "^3.5",
         "davejamesmiller/laravel-breadcrumbs": "^5.3",
         "fideloper/proxy": "^4.4",
+        "guzzlehttp/guzzle": "^7.2",
+        "itsgoingd/clockwork": "^5.0",
         "kyslik/column-sortable": "^6.4",
         "laravel/framework": "^6.20",
         "laravel/tinker": "^2.5",
         "laravel/ui": "1.*",
-        "laravelcollective/html": "6.*"
+        "laravelcollective/html": "6.*",
+        "usmanhalalit/laracsv": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^1.16.4",

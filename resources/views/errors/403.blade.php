@@ -20,7 +20,7 @@
         <div class="col-md-6">
             <section>
                 <h1>403 Forbidden</h1>
-                <p>ユーザー権限が違います。</p>
+                <p>あなたにこの機能の権限はありません。</p>
             </section>
         </div>
     </div>

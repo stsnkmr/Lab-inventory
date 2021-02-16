@@ -6,25 +6,32 @@
             <h2>書籍リスト</h2>
             <hr>
             @include('layouts.search_box')
-            <div class="text-right">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        ソート
-                      </button>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item">@sortablelink('title', 'タイトル')</a>
-                        <a class="dropdown-item">@sortablelink('author', '著者')</a>
-                        <a class="dropdown-item">@sortablelink('published_at', '出版日')</a>
-                      </div>
-                    @can('admin-higher')
-                    <a href="{{ action('BookController@choose') }}">
-                        <button type="button" class="btn btn-primary">新規登録</button>
-                    </a>
-                    @endcan
-                </div>
-                <hr>
-            </div>
+            <hr>
+        </div>
+        <div class="col-md-7 col-sm-7">
             <h4>{{ $books->total() }}件中{{ $books->count() }}件表示中です。</h4>
+        </div>
+        <div class="col-md-3 col-sm-3 text-right">
+            <div class="btn-group">
+                <a href="{{ action('BookController@createCSV') }}">
+                    <button type="button" class="btn btn-success">CSV出力</button>
+                </a>
+                <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ソート
+                    </button>
+                    <div class="dropdown-menu">
+                    <div class="dropdown-item">@sortablelink('title', 'タイトル')</div>
+                    <div class="dropdown-item">@sortablelink('author', '著者')</div>
+                    <div class="dropdown-item">@sortablelink('published_year', '発売年')</div>
+                    </div>
+                @can('admin-higher')
+                <a href="{{ action('BookController@choice') }}">
+                    <button type="button" class="btn btn-primary">新規登録</button>
+                </a>
+                @endcan
+            </div>
+        </div>
+        <div class="col-md-10 col-sm-10">
             <div class="card">
                 <div class="card-body">
                     <table class="table text-center">
@@ -32,11 +39,12 @@
                             <th>ID</th>
                             <th class="text-left">タイトル</th>
                             <th class="text-left">著者</th>
-                            <th class="text-left">発売日</th>
+                            <th class="text-left">発売年</th>
                             @can('user') {{-- userのみ表示 --}}
                             <th class="text-left">出版社</th>
                             <th>アクション</th>
                             @elsecan('admin-higher') {{-- adminのみ表示 --}}
+                            <th class="text-left">登録日</th>
                             <th>アクション</th>
                             @endcan
                         </thead>
@@ -44,10 +52,11 @@
                             @foreach ($books as $book)
                                 <tr>
                                     <td style="width: 5%">{{ $book->id }}</td>
-                                    <td style="width: 35%" class="text-left">{{ $book->title }}</td>
+                                    <td style="width: 30%" class="text-left">{{ $book->title }}</td>
                                     <td style="width: 15%" class="text-left">{{ $book->author }}</td>
-                                    <td style="width: 15%" class="text-left">{{ $book->published_date }}</td>
+                                    <td style="width: 10%" class="text-left">{{ $book->published_year }}</td>
                                     @can('admin-higher') {{-- admin権限のみ表示 --}}
+                                    <td style="width: 15%" class="text-left">{{ $book->created_at }}</td>
                                     <td style="width: 30%">
                                         <a href="{{ action('BookController@show', [$book]) }}">
                                             <button type="button" class="btn btn-primary">詳細</button>
@@ -62,10 +71,10 @@
                                         </div>
                                     </td>
                                     @elsecan('user') {{-- userのみ表示 --}}
-                                    <td style="width: 15%" class="text-left">
+                                    <td style="width: 20%" class="text-left">
                                         {{ $book->publisher }}
                                     </td>
-                                    <td style="width: 15%">
+                                    <td style="width: 20%">
                                         <a href="{{ action('BookController@show', [$book]) }}">
                                             <button type="button" class="btn btn-primary">詳細</button>
                                         </a>
@@ -75,7 +84,6 @@
                             @endforeach
                         </tbody>
                     </table>
-
                     {{ $books->appends(request()->query())->links() }}
                 </div>
             </div>

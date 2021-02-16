@@ -19,8 +19,8 @@
                     {{ Form::text('imgURL', $book->imgURL, ['class' => 'form-control', 'placeholder' => '表紙画像URL']) }}
                     {{ Form::label('publisher', '出版社') }}
                     {{ Form::text('publisher', $book->publisher, ['class' => 'form-control', 'placeholder' => '出版社']) }}
-                    {{ Form::label('published_date', '発売日') }}
-                    {{ Form::text('published_date', $book->published_date, ['class' => 'form-control', 'placeholder' => '出版日']) }}
+                    {{ Form::label('published_year', '発売年') }}
+                    {{ Form::text('published_year', $book->published_year, ['class' => 'form-control', 'placeholder' => '発売年']) }}
                     {{ Form::label('buyURL', 'buyURL') }}
                     {{ Form::text('buyURL', $book->buyURL, ['class' => 'form-control', 'placeholder' => 'buyURL']) }}
                     <div style="margin-top: 3%">

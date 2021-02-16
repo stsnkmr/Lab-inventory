@@ -9,6 +9,6 @@ class Book extends Model
 {
     use Sortable;
 
-    protected $fillable = ['title', 'author', 'description', 'isbn', 'publisher', 'buyURL', 'imgURL'];
-    protected $date = ['published_date', 'updated_at', 'created_at'];
+    protected $fillable = ['title', 'author', 'description', 'isbn', 'publisher', 'published_year', 'buyURL', 'imgURL'];
+    protected $date = ['updated_at', 'created_at'];
 }

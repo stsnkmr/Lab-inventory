@@ -17,11 +17,8 @@
                 {{ Form::text('keyword', '', ['class' => 'form-control', 'placeholder' => '何か入力してください。']) }}
             </div>
             <div class="text-right" style="margin-top: 1rem">
-                {{ Form::submit("検索", ['class' => 'btn btn-success']) }}
+                {{ Form::submit("検索", ['class' => 'btn btn-primary']) }}
             </div>
         </div>
     </div>
 </div>
-<main class="py-4">
-    @yield('content')
-</main>

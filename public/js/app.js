@@ -66158,7 +66158,7 @@ function addStyle (obj, options) {
 	// If a transform function was defined, run it on the css
 	if (options.transform && obj.css) {
 	    result = typeof options.transform === 'function'
-		 ? options.transform(obj.css) 
+		 ? options.transform(obj.css)
 		 : options.transform.default(obj.css);
 
 	    if (result) {
@@ -66489,9 +66489,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
-__webpack_require__(/*! ./components/barcode/App */ "./resources/js/components/barcode/App.jsx");
-
-__webpack_require__(/*! ./components/barcode/Scanner */ "./resources/js/components/barcode/Scanner.jsx");
+__webpack_require__(/*! ./components/barcode/Barcode */ "./resources/js/components/barcode/Barcode.jsx");
 
 /***/ }),
 
@@ -66540,10 +66538,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/barcode/App.jsx":
-/*!*************************************************!*\
-  !*** ./resources/js/components/barcode/App.jsx ***!
-  \*************************************************/
+/***/ "./resources/js/components/barcode/Barcode.jsx":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/barcode/Barcode.jsx ***!
+  \*****************************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -66584,7 +66582,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var App = function App() {
+var Barcode = function Barcode() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
       _useState2 = _slicedToArray(_useState, 2),
       scanning = _useState2[0],
@@ -66597,31 +66595,29 @@ var App = function App() {
 
   var getBookDetails = function getBookDetails(isbn) {
     Object(axios__WEBPACK_IMPORTED_MODULE_1__["get"])('https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn).then(function (res) {
-      console.log(res.data.totalItems);
       if (res.data.totalItems == 0) setScanning(true);else setBooks([].concat(_toConsumableArray(books), [res.data.items[0].volumeInfo]));
     });
   };
 
   var onSubmit = function onSubmit() {
     books.map(function (book) {
+      console.log(book.publishedDate);
       var params = new URLSearchParams();
       params.append('title', book.title);
       params.append('author', book.authors);
       params.append('description', book.description);
-      params.append('isbn', book.industryIdentifiers.identifier);
+      params.append('isbn', book.industryIdentifiers[1].identifier);
       params.append('publisher', book.publisher);
-      params.append('published_date', book.publishedDate);
+      params.append('published_year', book.publishedDate);
       params.append('imgURL', book.imageLinks.thumbnail);
       params.append('buyURL', book.infoLink);
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/book', params);
-      console.log("成功!" + book.title);
     });
     setBooks([]);
   };
 
   var removeBook = function removeBook(target) {
     books.splice(target, 1);
-    console.log(books);
     setBooks(_toConsumableArray(books));
   };
 
@@ -66671,7 +66667,7 @@ var App = function App() {
   }, "\u623B\u308B")))));
 };
 
-react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), document.getElementById('barcode'));
+react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Barcode, null), document.getElementById('barcode'));
 
 /***/ }),
 
@@ -66930,8 +66926,8 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/lab_inventory/resources/js/app.jsx */"./resources/js/app.jsx");
-module.exports = __webpack_require__(/*! /home/vagrant/code/lab_inventory/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/donald/SecureCycle/lab_inventory/resources/js/app.jsx */"./resources/js/app.jsx");
+module.exports = __webpack_require__(/*! /Users/donald/SecureCycle/lab_inventory/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

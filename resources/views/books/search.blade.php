@@ -1,4 +1,5 @@
 @include('layouts.app')
+@section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
@@ -30,7 +31,7 @@
                                     <td style="width: 5%">{{ $book->id }}</td>
                                     <td style="width: 35%" class="text-left">{{ $book->title }}</td>
                                     <td style="width: 15%" class="text-left">{{ $book->author }}</td>
-                                    <td style="width: 15%" class="text-left">{{ $book->published_date }}</td>
+                                    <td style="width: 15%" class="text-left">{{ $book->published_year }}</td>
                                     @can('admin-higher') {{-- admin権限のみ表示 --}}
                                     <td style="width: 30%">
                                         <a href="{{ action('BookController@show', [$book]) }}">
@@ -65,3 +66,9 @@
         </div>
     </div>
 </div>
+@endsection
+<style>
+    .pagination {
+        justify-content: center;
+    }
+</style>

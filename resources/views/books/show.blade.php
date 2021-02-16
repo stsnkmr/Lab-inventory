@@ -30,8 +30,8 @@
                                 <td>{{ $book->publisher }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">発売日</th>
-                                <td>{{ $book->published_date }}</td>
+                                <th scope="row">発売年</th>
+                                <td>{{ $book->published_year }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">作成日</th>
@@ -46,8 +46,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-sm">
-                    <img src={{ $book->imgURL }} class="rounded" alt={{ $book->title }}>
+                <div class="col-sm text-center">
+                    <img src={{ $book->imgURL }} class="rounded" alt={{ $book->title }} width="400" height="500">
                 </div>
             </div>
             <div class="mx-auto" style="margin-top: 4%">

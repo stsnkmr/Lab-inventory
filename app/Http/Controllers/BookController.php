@@ -79,14 +79,9 @@ class BookController extends Controller
         return redirect()->action('BookController@index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function choose()
+    public function choice()
     {
-        return view('books.choose');
+        return view('books.choice');
     }
 
     public function create_with_form()
@@ -112,5 +107,28 @@ class BookController extends Controller
         ->paginate(10);
 
         return view('books.search', compact('books'));
+    }
+
+    public function createCSV()
+    {
+        $books = Book::all();
+        $csvExporter = new \Laracsv\Export();
+        $csvExporter->build($books, [
+            'title' => 'タイトル',
+            'author' => '著者',
+            'description' => '説明',
+            'isbn' => 'ISBN',
+            'publisher' => '出版社',
+            'published_year' => '出版年',
+            'buyURL' => '詳細URL',
+        ]);
+        $csvReader = $csvExporter->getReader();
+        $csvReader->setOutputBOM(\League\Csv\Reader::BOM_UTF8); //文字化け回避
+        $filename = 'Books.csv';
+
+        return response((string) $csvReader)
+        ->header('Content-Type', 'text/csv; charset=UTF-8')
+        ->header('Content-Disposition', 'attachment; filename="'.$filename.'"');
+
     }
 }

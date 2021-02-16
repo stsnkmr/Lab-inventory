@@ -27,10 +27,9 @@ class BookRequest extends FormRequest
             'title' => 'required',
             'author' => 'required',
             'isbn' => 'nullable',
-            // 'isbn' => 'nullable|regex:[0-9\-]{9,16}[0-9X]',
             'description' => 'nullable',
             'publisher' => 'nullable',
-            'published_date' => 'nullable|date',
+            'published_year' => 'nullable|integer|digits:4',
             'imgURL' => 'nullable|url',
             'buyURL' => 'nullable|url',
         ];
