@@ -32,6 +32,7 @@ class BooksTableSeeder extends Seeder
             'imgURL' => 'http://books.google.com/books/content?id=BALOCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
             'buyURL' => 'https://www.amazon.co.jp/dp/B08NV5ZR93/ref=cm_sw_em_r_mt_dp_46PGAYQ540RWVA5PYA5K',
         ];
+        DB::table('books')->insert($param);
         $param = [
             'title' => 'タイトル3',
             'author' => '著者3',
@@ -42,5 +43,6 @@ class BooksTableSeeder extends Seeder
             'imgURL' => 'https://m.media-amazon.com/images/I/61IPfkfoamL._AC_SX965_SY724_.jpg',
             'buyURL' => 'https://www.amazon.co.jp/dp/B08NV5ZR93/ref=cm_sw_em_r_mt_dp_46PGAYQ540RWVA5PYA5K',
         ];
+        DB::table('books')->insert($param);
     }
 }
