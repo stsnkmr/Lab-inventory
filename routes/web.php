@@ -18,13 +18,13 @@ Auth::routes();
 // });
 // 管理者以上
 Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
+    Route::resource('book', 'BookController', ['except' => ['create', 'index', 'show']]);
     Route::get('book/csv', 'BookController@createCSV');
     Route::get('book/choice', 'BookController@choice')->name('book.choice');
     Route::get('book/choice/form', 'BookController@create_with_form')->name('book.create_with_form');
     Route::post('book/choice/form', 'BookController@create_with_form')->name('book.create_with_form');
     Route::get('book/choice/barcode', 'BookController@create_with_barcode')->name('book.create_with_barcode');
     Route::post('book/choice/barcode', 'BookController@create_with_barcode')->name('book.create_with_barcode');
-    Route::resource('book', 'BookController', ['except' => ['create', 'index', 'show']]);
 });
 // ログインしているユーザー
 Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
