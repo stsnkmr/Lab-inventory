@@ -16,14 +16,18 @@
                 <a href="{{ action('BookController@createCSV') }}">
                     <button type="button" class="btn btn-success">CSV出力</button>
                 </a>
-                <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!-- Example single danger button -->
+                <div class="btn-group">
+
+                </div>
+                {{-- <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     ソート
                     </button>
                     <div class="dropdown-menu">
                     <div class="dropdown-item">@sortablelink('title', 'タイトル')</div>
                     <div class="dropdown-item">@sortablelink('author', '著者')</div>
                     <div class="dropdown-item">@sortablelink('published_year', '発売年')</div>
-                    </div>
+                </div> --}}
                 @can('admin-higher')
                 <a href="{{ action('BookController@choice') }}">
                     <button type="button" class="btn btn-primary">新規登録</button>
@@ -36,15 +40,23 @@
                 <div class="card-body">
                     <table class="table text-center">
                         <thead class="table-light">
-                            <th>ID</th>
-                            <th class="text-left">タイトル</th>
-                            <th class="d-none d-sm-table-cell text-left">著者</th>
-                            <th class="d-none d-sm-table-cell text-left">発売年</th>
+                            <th>
+                                @sortablelink('id', 'ID')
+                            </th>
+                            <th class="text-left">
+                                @sortablelink('title', 'タイトル')
+                            </th>
+                            <th class="d-none d-sm-table-cell text-left">
+                                @sortablelink('author', '著者')
+                            </th>
+                            <th class="d-none d-sm-table-cell text-left">
+                                @sortablelink('published_year', '発売年')
+                            </th>
                             @can('user') {{-- userのみ表示 --}}
-                            <th class="text-left">出版社</th>
+                            <th class="text-left">@sortablelink('publisher', '出版社')</th>
                             <th>アクション</th>
                             @elsecan('admin-higher') {{-- adminのみ表示 --}}
-                            <th class="text-left  ">登録日</th>
+                            <th class="text-left  ">@sortablelink('created_at', '登録日')</th>
                             <th>アクション</th>
                             @endcan
                         </thead>
@@ -92,6 +104,9 @@
 </div>
 @endsection('content')
 <style>
+    a {
+        color: black; !important
+    }
     .pagination {
         justify-content: center;
     }
