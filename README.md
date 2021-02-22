@@ -9,7 +9,7 @@
   <dt>言語</dt>
   <dd>HTML/CSS, JavaScript(React.js), PHP8.0.0(Laravel6.20.16)</dd>
   <dt>本番環境</dt>
-  <dd>RaspberryPi(Raspbian)+nginx+mysql</dd>
+  <dd>RaspberryPi(Raspbian)+apache+mysql(mariadb-server)</dd>
 </dl>
 
 ## 主な機能
