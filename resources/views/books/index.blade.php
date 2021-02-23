@@ -77,6 +77,9 @@
                                             <button type="button" class="btn btn-primary">編集</button>
                                         </a>
                                         <div style="display: inline-flex">
+                                            @if ($loop->first) //変更予定 一時的にこれで
+                                                <form action=""></form>
+                                            @endif
                                             {{ Form::open(['method' => 'delete', 'url' => action('BookController@destroy', [$book])]) }}
                                             {{ Form::submit('削除', ['class' => 'btn btn-danger']) }}
                                             {{ Form::close() }}
