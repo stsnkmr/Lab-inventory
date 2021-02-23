@@ -6,22 +6,46 @@
             <h2>新規作成</h2>
             {{ Form::open(['url' => action('BookController@store', [$book]), 'method' => 'POST', 'files' => false]) }}
                 {{ Form::token() }}
-                {{ Form::label('title', 'タイトル') }}
-                {{ Form::text('title', $book->title, ['class' => 'form-control']) }}
-                {{ Form::label('author', '著者') }}
-                {{ Form::text('author', $book->author, ['class' => 'form-control']) }}
-                {{ Form::label('description', '説明') }}
-                {{ Form::text('description', $book->description, ['class' => 'form-control']) }}
-                {{ Form::label('isbn', 'ISBN') }}
-                {{ Form::text('isbn', $book->isbn, ['class' => 'form-control']) }}
-                {{ Form::label('publisher', '出版社') }}
-                {{ Form::text('publisher', $book->publisher, ['class' => 'form-control']) }}
-                {{ Form::label('published_year', '発売年') }}
-                {{ Form::text('published_year', $book->published_year, ['class' => 'form-control']) }}
-                {{ Form::label('buyURL', 'GoogleURL') }}
-                {{ Form::text('buyURL', $book->buyURL, ['class' => 'form-control']) }}
-                {{ Form::label('imgURL', '表紙画像URL') }}
-                {{ Form::text('imgURL', $book->imgURL, ['class' => 'form-control']) }}
+                <div>
+                        {{ Form::label('title', 'タイトル') }}
+                        {{ Form::text('title', $book->title, ['class' => 'form-control']) }}
+                        <span class="help-block">{{$errors->first('title')}}</span>
+                    </div>
+                    <div>
+                        {{ Form::label('author', '著者') }}
+                        {{ Form::text('author', $book->author, ['class' => 'form-control']) }}
+                        <span class="help-block">{{$errors->first('author')}}</span>
+                    </div>
+                    <div>
+                        {{ Form::label('description', '説明') }}
+                        {{ Form::text('description', $book->description, ['class' => 'form-control']) }}
+                        <span class="help-block">{{$errors->first('description')}}</span>
+                    </div>
+                    <div>
+                        {{ Form::label('isbn', 'ISBN') }}
+                        {{ Form::text('isbn', $book->isbn, ['class' => 'form-control']) }}
+                        <span class="help-block">{{$errors->first('isbn')}}</span>
+                    </div>
+                    <div>
+                        {{ Form::label('imgURL', '表紙画像URL') }}
+                        {{ Form::text('imgURL', $book->imgURL, ['class' => 'form-control']) }}
+                        <span class="help-block">{{$errors->first('imgURL')}}</span>
+                    </div>
+                    <div>
+                        {{ Form::label('publisher', '出版社') }}
+                        {{ Form::text('publisher', $book->publisher, ['class' => 'form-control']) }}
+                        <span class="help-block">{{$errors->first('publisher')}}</span>
+                    </div>
+                    <div>
+                        {{ Form::label('published_year', '発売年') }}
+                        {{ Form::text('published_year', $book->published_year, ['class' => 'form-control']) }}
+                        <span class="help-block">{{$errors->first('published_year')}}</span>
+                    </div>
+                    <div>
+                        {{ Form::label('buyURL', 'GoogleBooksURL') }}
+                        {{ Form::text('buyURL', $book->buyURL, ['class' => 'form-control']) }}
+                        <span class="help-block">{{$errors->first('buyURL')}}</span>
+                    </div>
                 <div style="margin-top: 3%">
                     {{ Form::submit("決定", ['class' => 'btn btn-primary btn-block']) }}
                 </div>

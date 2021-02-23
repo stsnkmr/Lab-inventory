@@ -5,11 +5,13 @@ import Scanner from './Scanner';
 import './styles.css';
 
 const Barcode = () => {
+    const [msg, setMsg] = useState("ISBNバーコードをカメラに向けてください。")
     const [scanning, setScanning] = useState(true);
     const [books, setBooks] = useState([]);
     const getBookDetails = (isbn) => {
         get('https://www.googleapis.com/books/v1/volumes?q=isbn:'+isbn).then(res => {
             if (res.data.totalItems == 0) {
+                setMsg("もう一度読み取ってください。")
                 setScanning(true);
             }
             else setBooks([...books, res.data.items[0].volumeInfo]);
@@ -39,6 +41,9 @@ const Barcode = () => {
 
     return (
         <div className="row">
+            <div className="col-12">
+                <p>{ msg }</p>
+            </div>
             <div className="col-md-6">
                 <button onClick={() => setScanning(!scanning)} className={scanning ? 'btn btn-secondary btn-block' : 'btn btn-primary btn-block'}>
                     {scanning ? 'Stop' : 'Start'}

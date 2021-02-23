@@ -66583,19 +66583,25 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Barcode = function Barcode() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("ISBNバーコードをカメラに向けてください。"),
       _useState2 = _slicedToArray(_useState, 2),
-      scanning = _useState2[0],
-      setScanning = _useState2[1];
+      msg = _useState2[0],
+      setMsg = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
       _useState4 = _slicedToArray(_useState3, 2),
-      books = _useState4[0],
-      setBooks = _useState4[1];
+      scanning = _useState4[0],
+      setScanning = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      books = _useState6[0],
+      setBooks = _useState6[1];
 
   var getBookDetails = function getBookDetails(isbn) {
     Object(axios__WEBPACK_IMPORTED_MODULE_1__["get"])('https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn).then(function (res) {
       if (res.data.totalItems == 0) {
+        setMsg("もう一度読み取ってください。");
         setScanning(true);
       } else setBooks([].concat(_toConsumableArray(books), [res.data.items[0].volumeInfo]));
     });
@@ -66626,6 +66632,8 @@ var Barcode = function Barcode() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, msg)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
