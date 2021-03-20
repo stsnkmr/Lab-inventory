@@ -2,13 +2,13 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10 col-sm-10 col-xs-12">
+        <div class="col-md-12 col-sm-10 col-xs-12">
             <h2>書籍リスト</h2>
             <hr>
             @include('layouts.search_box')
             <hr>
         </div>
-        <div class="col-md-7 col-sm-7 col-xs-9">
+        <div class="col-md-9 col-sm-7 col-xs-9">
             <h4>{{ $books->total() }}件中{{ $books->count() }}件表示中です。</h4>
         </div>
         <div class="col-md-3 col-sm-3 col-xs-3 text-right">
@@ -20,14 +20,6 @@
                 <div class="btn-group">
 
                 </div>
-                {{-- <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    ソート
-                    </button>
-                    <div class="dropdown-menu">
-                    <div class="dropdown-item">@sortablelink('title', 'タイトル')</div>
-                    <div class="dropdown-item">@sortablelink('author', '著者')</div>
-                    <div class="dropdown-item">@sortablelink('published_year', '発売年')</div>
-                </div> --}}
                 @can('admin-higher')
                 <a href="{{ action('BookController@choice') }}">
                     <button type="button" class="btn btn-primary">新規登録</button>
@@ -35,7 +27,7 @@
                 @endcan
             </div>
         </div>
-        <div class="col-md-10 col-sm-10 col-xs-12">
+        <div class="col-md-12 col-sm-10 col-xs-12">
             <div class="card">
                 <div class="card-body">
                     <table class="table text-center">

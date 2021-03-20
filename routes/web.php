@@ -8,6 +8,8 @@ Auth::routes();
 // 管理者以上
 Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
     Route::resource('book', 'BookController', ['except' => ['create', 'index', 'show']]);
+    Route::get('user', 'UserController@index');
+    Route::resource('user', 'UserController');
     Route::get('book/csv', 'BookController@createCSV');
     Route::get('book/choice', 'BookController@choice')->name('book.choice');
     Route::get('book/choice/form', 'BookController@create_with_form')->name('book.create_with_form');
