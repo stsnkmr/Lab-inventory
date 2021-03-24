@@ -22,7 +22,7 @@ class BookTest extends TestCase
         parent::setUp();
         Session::start();
         factory(Book::class)->create();
-        $this->user = factory(User::class)->create(['role' => 1]);
+        $this->user = factory(User::class)->create(['role' => 2]);
         $this->be($this->user); //ログインしているユーザーを設定
     }
 
@@ -32,7 +32,7 @@ class BookTest extends TestCase
      * @return void
      */
 
-    public function testCannnotAccessMemberRoleChoise()
+    public function testCannnotAccessMemberRoleChoice()
     {
         $user = factory(User::class)->create(['role' => 3]); //一般ユーザー
         $response = $this->actingAs($user)->get(action('BookController@choice'));
@@ -158,6 +158,7 @@ class BookTest extends TestCase
             ]
         );
         $created_book = Book::get()->last();
+        // dump($created_book);
         $this->assertEquals($book->title, $created_book->title);
         $this->assertEquals($book->author, $created_book->author);
         $this->assertEquals($book->description, $created_book->description);

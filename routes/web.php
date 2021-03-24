@@ -24,11 +24,10 @@ Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
     // ユーザー情報設定（個人）
     Route::get('/user/change_password', 'UserController@change_password');
     Route::post('/user/change_password', 'UserController@update_password');
+    Route::get('/', 'HomeController@index')->name('home');
 });
 Auth::routes([
     'verify'   => true, // メール確認機能（※5.7系以上のみ）
     'register' => false, // デフォルトの登録機能OFF
     'reset'    => false,  // メールリマインダー機能ON);
 ]);
-
-Route::get('/home', 'HomeController@index')->name('home');
