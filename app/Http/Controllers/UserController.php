@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserPasswordRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserRequest;
 
 class UserController extends Controller{
-    public function user(Request $request)
-    {
-        return $request->user();
-    }
 
     public function index()
     {
@@ -20,7 +19,8 @@ class UserController extends Controller{
 
     public function create()
     {
-        return view('auth.register');
+        $user = new User();
+        return view('users.create', compact('user'));
     }
 
     /**
@@ -32,7 +32,9 @@ class UserController extends Controller{
     public function store(UserRequest $request)
     {
         $user = new User();
+        $user->role = 3;
         $user->fill($request->validated());
+        $user->password = Hash::make($user->password);
         $user->save();
         return redirect()->action('UserController@index');
     }
@@ -51,13 +53,19 @@ class UserController extends Controller{
      * Update the specified resource in storage.
      *
      * @param  UserRequest $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, User $book)
+    public function update(UserRequest $request, User $user)
     {
-        $book->fill($request->validated());
-        $book->save();
+        $user->fill(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'role' => $request->role,
+            ]
+        );
+        $user->fill($request->validated());
+        $user->save();
         return redirect()->action('UserController@index');
     }
 
@@ -71,5 +79,29 @@ class UserController extends Controller{
     {
         $user->delete();
         return redirect()->action('UserController@index');
+    }
+
+    /**
+     *Return reset view . (role:user-higher)
+     */
+    public function change_password()
+    {
+        $user = Auth::user();
+        return view('users.change_password', compact('user'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param UserRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update_password(UserPasswordRequest $request, User $user)
+    {
+        $password = $request->validated();
+        $user = User::where('id', Auth::id())->first();
+        $user->password = Hash::make($password['password']);
+        $user->save();
+        return redirect()->action('BookController@index');
     }
 }

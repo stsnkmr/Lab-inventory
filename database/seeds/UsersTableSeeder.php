@@ -11,19 +11,20 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $param = [
-            'name' => 'admin',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('secretsecret'),
-            'role' => 2,
-        ];
-        DB::table('users')->insert($param);
-        $param = [
-            'name' => 'user',
-            'email' => 'user@example.com',
-            'password' => bcrypt('secretsecret'),
-            'role' => 3,
-        ];
-        DB::table('users')->insert($param);
+        $only = ['name', 'password', 'email_verified_at', 'remember_token', 'role'];
+        App\User::firstOrCreate(
+            ['email' => 'admin@example.com'],
+            factory(App\User::class)->make([
+                'role' => 2,
+                'password' => '$2y$10$PN9x/eygIAmYKfkGRwP/s.KBgsLczPsofi0JSUxfbfquQpOEh94RW'
+            ])->only($only)
+        );
+        App\User::firstOrCreate(
+            ['email' => 'user@example.com'],
+            factory(App\User::class)->make([
+                'role' => 3,
+                'password' => '$2y$10$PN9x/eygIAmYKfkGRwP/s.KBgsLczPsofi0JSUxfbfquQpOEh94RW'
+            ])->only($only)
+        );
     }
 }

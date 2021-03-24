@@ -42,6 +42,6 @@ class LoginController extends Controller
     }
     protected function loggedOut(Request $request)
     {
-        return redirect()->action('BookController@index');
+        return redirect()->route('login');
     }
 }
