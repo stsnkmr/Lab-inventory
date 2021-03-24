@@ -20,6 +20,7 @@ class UserController extends Controller{
     public function create()
     {
         $user = new User();
+        $user->role = 3; //set member default role
         return view('users.create', compact('user'));
     }
 
@@ -32,7 +33,6 @@ class UserController extends Controller{
     public function store(UserRequest $request)
     {
         $user = new User();
-        $user->role = 3;
         $user->fill($request->validated());
         $user->password = Hash::make($user->password);
         $user->save();
