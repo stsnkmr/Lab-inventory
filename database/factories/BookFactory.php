@@ -19,7 +19,7 @@ use Faker\Generator as Faker;
 $factory->define(Book::class, function (Faker $faker) {
     return [
         'title' => $faker->city,
-        'author' => $faker->name,
+        'author' => Str::random(10),
         'isbn' => $faker->isbn13,
         'description' => $faker->sentence,
         'publisher' => $faker->company,
