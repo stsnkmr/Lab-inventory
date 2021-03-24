@@ -155,13 +155,10 @@ class BookTest extends TestCase
                 'published_year' => $book->published_year,
                 'buyURL' => $book->buyURL,
                 'imgURL' => $book->imgURL,
+                '_token' => Session::token(),
             ]
         );
-        dump($book);
         $created_book = Book::all()->last();
-        dump($created_book);
-        $created_book = Book::all()->first();
-        dump($created_book);
         $this->assertEquals($book->title, $created_book->title);
         $this->assertEquals($book->author, $created_book->author);
         $this->assertEquals($book->description, $created_book->description);
