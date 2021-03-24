@@ -157,7 +157,7 @@ class BookTest extends TestCase
                 'imgURL' => $book->imgURL,
             ]
         );
-        $created_book = Book::get()->last();
+        $created_book = Book::all()->last();
         // dump($created_book);
         $this->assertEquals($book->title, $created_book->title);
         $this->assertEquals($book->author, $created_book->author);
