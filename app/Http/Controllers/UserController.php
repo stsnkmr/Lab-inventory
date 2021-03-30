@@ -11,6 +11,11 @@ use App\Http\Requests\UserRequest;
 
 class UserController extends Controller{
 
+    // public function __construct()
+    // {
+    //     // parent::__construct();
+    // }
+
     public function index()
     {
         $users = User::sortable()->paginate(10);

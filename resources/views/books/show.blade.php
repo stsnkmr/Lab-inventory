@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10 col-sm-10">
-            <h2>詳細</h2>
+            <h2>@lang(__('title.book_show'))</h2>
             <hr>
             <div class="row">
                 <div class="col-sm">

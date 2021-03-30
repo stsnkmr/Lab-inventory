@@ -3,32 +3,32 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 col-sm-10">
-                <h2>新規作成</h2>
+                <h2>@lang(__('item.user_create'))</h2>
                 <hr>
                 {{ Form::open(['url' => action('UserController@store', [$user]), 'method' => 'POST', 'files' => false]) }}
                     {{ Form::token() }}
                     {{ Form::hidden('role', $user->role) }}
                     <div class="form-group">
-                        {{ Form::label('name', '名前') }}
-                        {{ Form::text('name', $user->name,['class' => 'form-control', 'placeholder' => '名前']) }}
+                        {{ Form::label('name',  __('item.name')) }}
+                        {{ Form::text('name', $user->name,['class' => 'form-control', 'placeholder' => __('item.name')]) }}
                         <span class="help-block">{{$errors->first('name')}}</span>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('email', 'メールアドレス') }}
-                        {{ Form::text('email', $user->email,['class' => 'form-control', 'placeholder' => 'メールアドレス']) }}
+                        {{ Form::label('email', __('item.email')) }}
+                        {{ Form::text('email', $user->email,['class' => 'form-control', 'placeholder' => __('item.email')]) }}
                         <span class="help-block">{{$errors->first('email')}}</span>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('password', 'パスワード') }}
-                        {{ Form::password('password', ['class' => 'form-control', 'placeholder' => 'パスワード']) }}
+                        {{ Form::label('password', __('item.password')) }}
+                        {{ Form::password('password', ['class' => 'form-control', 'placeholder' => __('password_confirmation')]) }}
                         <span class="help-block">{{$errors->first('password')}}</span>
                     </div>
                     <div class="form-group">
-                        {{ Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'パスワード確認']) }}
+                        {{ Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => __('item.password_confirmation')]) }}
                         <span class="help-block">{{$errors->first('password')}}</span>
                     </div>
                     <div style="margin-top: 3%">
-                        {{ Form::submit("決定", ['class' => 'btn btn-primary btn-block']) }}
+                        {{ Form::submit(__('item.submit'), ['class' => 'btn btn-primary btn-block']) }}
                     {{ Form::close() }}
                     </div>
                 </div>

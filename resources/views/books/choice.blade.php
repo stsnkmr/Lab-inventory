@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10 col-sm-10">
-        <h1>選択</h1>
+        <h1>@lang(__('title.choice_ registration_type'))</h1>
         <hr>
             <div class="card-deck">
                 <div class="card text-center">

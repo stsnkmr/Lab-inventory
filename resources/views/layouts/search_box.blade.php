@@ -1,5 +1,5 @@
 <div id="search_box" class="card" style="padding: 2rem 2rem">
-    <h3 class="card-title">書籍検索</h3>
+    <h3 class="card-title">@lang(__('title.book_search'))</h3>
     <div class="row">
         <div class="col-12 justify-content-center">
             <div class="form-check form-check-inline">

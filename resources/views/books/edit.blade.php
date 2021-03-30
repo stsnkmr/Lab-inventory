@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 col-sm-10">
-                <h2>編集</h2>
+                <h2>@lang(__('title.book_edit'))</h2>
                 <hr>
                 {{ Form::open(['url' => action('BookController@update', [$book]), 'method' => 'PUT', 'files' => false]) }}
                     {{ Form::token() }}

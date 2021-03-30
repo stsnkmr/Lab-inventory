@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 col-sm-10">
-                <h2>パスワード変更</h2>
+                <h2>@lang(__('title.change_password'))</h2>
                 <hr>
                 {{ Form::open(['url' => action('UserController@update_password'), 'method' => 'POST', 'files' => false]) }}
                 {{ Form::token() }}
