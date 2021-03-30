@@ -6,6 +6,7 @@ return [
     'edit' => '編集',
     'delete' => '削除',
     'show' => '詳細',
+    'search' => '検索',
     'email' => 'メール',
     'password' => 'パスワード',
     'password_confirmation' => 'パスワード確認',
@@ -15,10 +16,12 @@ return [
     //books
     'title' => 'タイトル',
     'author' => '著者',
+    'publisher' => '出版社',
     'published_year' => '出版日',
     'created_at' => '登録日',
     'actions' => 'アクション',
     'csv_output' => 'CSV出力',
+    'search_word' => '検索ワード',
     //users
     'users' => 'ユーザー',
     'user' => 'ユーザー',

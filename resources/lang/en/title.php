@@ -10,4 +10,6 @@ return [
     'create_with_barcode' => 'Create with barcode',
     'book_show' => 'Show book',
     'book_edit' => 'Edit book',
+    'book_search' => 'Search books',
+    'book_search_results' => 'Results',
 ];

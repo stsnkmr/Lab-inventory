@@ -10,4 +10,6 @@ return [
     'create_with_barcode' => 'バーコードから作成',
     'show_book' => '本の詳細',
     'edit_book' => '本の編集',
+    'book_search' => '本の検索',
+    'book_search_results' => '検索結果',
 ];

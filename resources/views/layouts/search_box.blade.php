@@ -6,18 +6,18 @@
                 {{ Form::open(['url' => action('BookController@search'), 'method' => 'GET']) }}
                 {{ Form::token() }}
                 {{ Form::radio('search_type', 'title', true, ['id' => '1', 'class' => 'form-check-input']) }}
-                {{ Form::label('search_type', 'タイトル', ['class' => 'form-check-label']) }}
+                {{ Form::label('search_type', __('item.title'), ['class' => 'form-check-label']) }}
                 {{ Form::radio('search_type', 'author', false, ['id' => '2', 'class' => 'form-check-input']) }}
-                {{ Form::label('search_type', '著者', ['class' => 'form-check-label']) }}
+                {{ Form::label('search_type', __('item.author'), ['class' => 'form-check-label']) }}
                 {{ Form::radio('search_type', 'publisher', false, ['id' => '3', 'class' => 'form-check-input']) }}
-                {{ Form::label('search_type', '出版社', ['class' => 'form-check-label']) }}
+                {{ Form::label('search_type', __('item.publisher'), ['class' => 'form-check-label']) }}
             </div>
             <div>
-                {{ Form::label('keyword', '検索ワード') }}
+                {{ Form::label('keyword', __('item.search_word')) }}
                 {{ Form::text('keyword', old('keyword'), ['class' => 'form-control', 'placeholder' => '何か入力してください。',]) }}
             </div>
             <div class="text-right" style="margin-top: 1rem">
-                {{ Form::submit("検索", ['class' => 'btn btn-primary']) }}
+                {{ Form::submit(__('item.search'), ['class' => 'btn btn-primary']) }}
             </div>
         </div>
     </div>

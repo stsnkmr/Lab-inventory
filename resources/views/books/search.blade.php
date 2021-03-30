@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <h2>検索結果</h2>
+            <h2>{{ __('title.book_search_results') }}</h2>
             @include('layouts.search_box')
         </div>
     </div>
@@ -13,16 +13,16 @@
                 <div class="card-body">
                     <table class="table text-center">
                         <thead class="table-light">
-                            <th>ID</th>
-                            <th class="text-left">タイトル</th>
-                            <th class="d-none d-sm-table-cell text-left">著者</th>
-                            <th class="d-none d-sm-table-cell text-left">発売年</th>
+                            <th>{{ __('item.id') }}</th>
+                            <th class="text-left">{{ __('item.title') }}</th>
+                            <th class="d-none d-sm-table-cell text-left">{{ __('item.author') }}</th>
+                            <th class="d-none d-sm-table-cell text-left">{{ __('item.published_year') }}</th>
                             @can('user') {{-- userのみ表示 --}}
-                            <th class="text-left">出版社</th>
-                            <th>アクション</th>
+                            <th class="text-left">{{ __('item.author') }}</th>
+                            <th></th>
                             @elsecan('admin-higher') {{-- adminのみ表示 --}}
-                            <th class="text-left">登録日</th>
-                            <th>アクション</th>
+                            <th class="text-left">{{ __('item.created_at') }}</th>
+                            <th></th>
                             @endcan
                         </thead>
                         <tbody>

@@ -6,6 +6,7 @@ return [
     'edit' => 'Edit',
     'delete' => 'Delete',
     'show' => 'Show',
+    'search' => 'Search',
     'email' => 'Mail',
     'password' => 'Password',
     'password_confirmation' => 'Confirm password',
@@ -15,10 +16,12 @@ return [
     //book
     'title' => 'Title',
     'author' => 'Author',
+    'publisher' => 'Publisher',
     'published_year' => 'Year',
     'created_at' => 'Created at',
     'actions' => 'Actions',
     'csv_output' => 'Output CSV',
+    'search_word' => 'Search word',
     //users
     'users' => 'Users',
     'user' => 'User',
