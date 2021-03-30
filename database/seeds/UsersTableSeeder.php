@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $only = ['name', 'password', 'email_verified_at', 'remember_token', 'role'];
+        $only = ['name', 'password', 'student_number', 'email_verified_at', 'remember_token', 'role'];
         App\User::firstOrCreate(
             ['email' => 'admin@example.com'],
             factory(App\User::class)->make([

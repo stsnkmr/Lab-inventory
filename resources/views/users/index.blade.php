@@ -17,6 +17,9 @@
                                 @sortablelink('name', '名前')
                             </th>
                             <th class="text-left">
+                                @sortablelink('stuent_number', '学籍番号')
+                            </th>
+                            <th class="text-left">
                                 @sortablelink('email', 'メールアドレス')
                             </th>
                             <th class="text-center">
@@ -27,9 +30,10 @@
                             @foreach ($users as $user)
                                 <tr>
                                     <td style="width: 5%">{{ $user->id }}</td>
-                                    <td style="width: 20%" class="text-left">{{ $user->name }}</td>
+                                    <td style="width: 25%" class="text-left">{{ $user->name }}</td>
+                                    <td style="width: 25%" class="text-left">{{ $user->student_number }}</td>
                                     <td style="width: 20%" class="text-left">{{ $user->email }}</td>
-                                    <td style="width: 30%">
+                                    <td style="width: 20%">
                                         <a href="{{ action('UserController@edit', [$user]) }}">
                                             <button type="button" class="btn btn-primary">編集</button>
                                         </a>
