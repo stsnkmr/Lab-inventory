@@ -57,14 +57,8 @@ class UserController extends Controller{
      */
     public function update(UserRequest $request, User $user)
     {
-        $user->fill(
-            [
-                'name' => $request->name,
-                'email' => $request->email,
-                'role' => $request->role,
-            ]
-        );
         $user->fill($request->validated());
+        $user = User::findOrFail($user->id);
         $user->save();
         return redirect()->action('UserController@index');
     }
