@@ -23,26 +23,24 @@ class Scanner extends Component {
             inputStream: {
                 type: 'LiveStream',
                 constraints: {
-                    width: 640,
-                    height: 480,
+                    width: 700,
+                    height: 600,
                     facingMode: 'environment',
                 },
                 area: { //offset
-                    top: "10%",
+                    top: "20%",
                     right: "0%",
                     left: "0%",
-                    bottom: "10%"
+                    bottom: "20%"
                 },
-                halfSample: true,
             },
             locator: {
             patchSize: 'medium',
-            halfSample: true,
+            halfSample: false,
             },
             decoder: {
                 readers: ['ean_reader'],
             },
-            multiple: true,
             locate: true,
         },
         function(err) {
