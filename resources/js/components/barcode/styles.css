@@ -8,8 +8,13 @@
 
 video {
     width: 100%;
-
+    z-index: 0;
 }
 canvas {
     width: 80%;
+}
+.drawLine {
+    z-index: 1;
+    border: solid 4px;
+    margin: 30% 100%;
 }

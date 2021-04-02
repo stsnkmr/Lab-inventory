@@ -5,7 +5,7 @@ import Scanner from './Scanner';
 import './styles.css';
 
 const Barcode = () => {
-    const [msg, setMsg] = useState("ISBNバーコードをカメラに向けてください。")
+    const [msg, setMsg] = useState("ISBNバーコードをカメラの中央に向けてください。")
     const [scanning, setScanning] = useState(true);
     const [books, setBooks] = useState([]);
     const getBookDetails = (isbn) => {
@@ -49,7 +49,7 @@ const Barcode = () => {
                 <button onClick={() => setScanning(!scanning)} className={scanning ? 'btn btn-secondary btn-block' : 'btn btn-primary btn-block'}>
                     {scanning ? 'Stop' : 'Start'}
                 </button>
-                {scanning ? <Scanner setStop={() => setScanning(false)} onDetected={(result) => getBookDetails(result.codeResult.code)} /> : null}
+                {scanning ? <Scanner setStop={() => setScanning(false)} onDetected={(result) => getBookDetails(result.codeResult.code)} className='drawLine'/> : null}
             </div>
             <div className="col-md-6">
                 <button onClick={(result) => onSubmit(result)} className="btn btn-primary btn-block">登録</button>
