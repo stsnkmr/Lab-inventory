@@ -28,10 +28,10 @@ class Scanner extends Component {
                     facingMode: 'environment',
                 },
                 area: { //offset
-                    top: "20%",
+                    top: "10%",
                     right: "0%",
                     left: "0%",
-                    bottom: "20%"
+                    bottom: "10%"
                 },
                 halfSample: true,
             },
@@ -41,11 +41,8 @@ class Scanner extends Component {
             },
             decoder: {
                 readers: ['ean_reader'],
-                debug: {
-                    drawBoundingBox: true,
-                    drawScanline: true,
-                }
             },
+            multiple: true,
             locate: true,
         },
         function(err) {
