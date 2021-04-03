@@ -60,7 +60,6 @@ class UserController extends Controller{
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->fill($request->validated());
-        $user = User::findOrFail($user->id);
         $user->save();
         return redirect()->action('UserController@index');
     }
