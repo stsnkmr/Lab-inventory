@@ -14,7 +14,7 @@ class AddStudentNumberToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('student_number', 10)->nullable();
+            $table->string('student_number', 10)->unique();
         });
     }
 

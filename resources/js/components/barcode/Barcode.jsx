@@ -5,7 +5,7 @@ import Scanner from './Scanner';
 import './styles.css';
 
 const Barcode = () => {
-    const [msg, setMsg] = useState("ISBNバーコードをカメラに向けてください。")
+    const [msg, setMsg] = useState("ISBNバーコードをカメラの中央に向けてください。")
     const [scanning, setScanning] = useState(true);
     const [books, setBooks] = useState([]);
     const getBookDetails = (isbn) => {
@@ -19,16 +19,17 @@ const Barcode = () => {
     }
 
     const onSubmit = () => {
+        console.log(books);
         books.map((book) => {
             var params = new URLSearchParams();
-            params.append('title', book.title);
-            params.append('author', book.authors);
-            params.append('description', book.description);
-            params.append('isbn', book.industryIdentifiers[1].identifier);
-            params.append('publisher', book.publisher);
-            params.append('published_year', Number(book.publishedDate.substr(0, 4))); //年度のみを切り出し
-            params.append('imgURL', book.imageLinks.thumbnail);
-            params.append('buyURL', book.infoLink);
+            params.append('title', book.title ? book.title : "Undefined");
+            params.append('author', book.authors ? book.authors : "Undefined");
+            params.append('description', book.description ? book.description : "Undefined");
+            params.append('isbn', book.industryIdentifiers[1].identifier ? book.industryIdentifiers[1].identifier : "Undefined");
+            params.append('publisher', book.publisher ? book.publisher : "Undefined");
+            params.append('published_year', book.publishedDate ? Number(book.publishedDate.substr(0, 4)) : Number('0000'));
+            params.append('imgURL', book.imageLinks ? book.imageLinks.thumbnail : "https://4.bp.blogspot.com/-Wn71ox9Q41s/Vf-aKgnEsrI/AAAAAAAAyD4/v773rrnYI5s/s800/dame_woman.png");
+            params.append('buyURL', book.infoLink ? book.infoLink : "https://4.bp.blogspot.com/-Wn71ox9Q41s/Vf-aKgnEsrI/AAAAAAAAyD4/v773rrnYI5s/s800/dame_woman.png");
             axios.post('/book', params);
         })
         setBooks([])
@@ -48,7 +49,7 @@ const Barcode = () => {
                 <button onClick={() => setScanning(!scanning)} className={scanning ? 'btn btn-secondary btn-block' : 'btn btn-primary btn-block'}>
                     {scanning ? 'Stop' : 'Start'}
                 </button>
-                {scanning ? <Scanner setStop={() => setScanning(false)} onDetected={(result) => getBookDetails(result.codeResult.code)} /> : null}
+                {scanning ? <Scanner setStop={() => setScanning(false)} onDetected={(result) => getBookDetails(result.codeResult.code)} className='drawLine'/> : null}
             </div>
             <div className="col-md-6">
                 <button onClick={(result) => onSubmit(result)} className="btn btn-primary btn-block">登録</button>

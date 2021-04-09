@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12 col-sm-10 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
             <a href="{{ action('UserController@create') }}">
                 <button type="button" class="btn btn-primary text-right">新規登録</button>
             </a>
@@ -16,11 +16,14 @@
                             <th class="text-left">
                                 @sortablelink('name', '名前')
                             </th>
-                            <th class="text-left">
+                            <th class="text-left d-none d-md-table-cell">
                                 @sortablelink('stuent_number', '学籍番号')
                             </th>
-                            <th class="text-left">
+                            <th class="text-left d-none d-md-table-cell">
                                 @sortablelink('email', 'メールアドレス')
+                            </th>
+                            <th class="text-left d-none d-md-table-cell">
+                                @sortablelink('role', '権限')
                             </th>
                             <th class="text-center">
                                 アクション
@@ -30,9 +33,16 @@
                             @foreach ($users as $user)
                                 <tr>
                                     <td style="width: 5%">{{ $user->id }}</td>
-                                    <td style="width: 25%" class="text-left">{{ $user->name }}</td>
-                                    <td style="width: 25%" class="text-left">{{ $user->student_number }}</td>
-                                    <td style="width: 20%" class="text-left">{{ $user->email }}</td>
+                                    <td style="width: 20%" class="text-left">{{ $user->name }}</td>
+                                    <td style="width: 20%" class="text-left d-none d-md-table-cell">{{ $user->student_number }}</td>
+                                    <td style="width: 20%" class="text-left d-none d-md-table-cell">{{ $user->email }}</td>
+                                    <td style="width: 15%" class="text-left d-none d-md-table-cell">
+                                        @if ($user->role == 2)
+                                            管理者
+                                        @elseif($user->role == 3)
+                                            一般
+                                        @endif
+                                    </td>
                                     <td style="width: 20%">
                                         <a href="{{ action('UserController@edit', [$user]) }}">
                                             <button type="button" class="btn btn-primary">編集</button>

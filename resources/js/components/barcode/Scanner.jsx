@@ -21,19 +21,25 @@ class Scanner extends Component {
         Quagga.init(
         {
             inputStream: {
-            type: 'LiveStream',
-            constraints: {
-                width: 640,
-                height: 480,
-                facingMode: 'environment', // or user
-            },
+                type: 'LiveStream',
+                constraints: {
+                    width: 700,
+                    height: 600,
+                    facingMode: 'environment',
+                },
+                area: { //offset
+                    top: "20%",
+                    right: "0%",
+                    left: "0%",
+                    bottom: "20%"
+                },
             },
             locator: {
             patchSize: 'medium',
-            halfSample: true,
+            halfSample: false,
             },
             decoder: {
-            readers: ['ean_reader'],
+                readers: ['ean_reader'],
             },
             locate: true,
         },

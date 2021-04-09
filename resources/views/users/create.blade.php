@@ -19,8 +19,18 @@
                         <span class="help-block">{{$errors->first('email')}}</span>
                     </div>
                     <div class="form-group">
+<<<<<<< HEAD
                         {{ Form::label('password', __('item.password')) }}
                         {{ Form::password('password', ['class' => 'form-control', 'placeholder' => __('password_confirmation')]) }}
+=======
+                        {{ Form::label('student_number', '学籍番号') }}
+                        {{ Form::text('student_number', $user->student_number,['class' => 'form-control', 'placeholder' => '学籍番号']) }}
+                        <span class="help-block">{{$errors->first('student_number')}}</span>
+                    </div>
+                    <div class="form-group">
+                        {{ Form::label('password', 'パスワード') }}
+                        {{ Form::password('password', ['class' => 'form-control', 'placeholder' => 'パスワード']) }}
+>>>>>>> master
                         <span class="help-block">{{$errors->first('password')}}</span>
                     </div>
                     <div class="form-group">

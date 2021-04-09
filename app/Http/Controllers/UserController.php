@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserPasswordRequest;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserPasswordRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -35,7 +37,7 @@ class UserController extends Controller{
      * @param  \Illuminate\Http\Requests\UserRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(CreateUserRequest $request)
     {
         $user = new User();
         $user->fill($request->validated());
@@ -57,18 +59,11 @@ class UserController extends Controller{
     /**
      * Update the specified resource in storage.
      *
-     * @param  UserRequest $request
+     * @param  UpdateUserRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $user->fill(
-            [
-                'name' => $request->name,
-                'email' => $request->email,
-                'role' => $request->role,
-            ]
-        );
         $user->fill($request->validated());
         $user->save();
         return redirect()->action('UserController@index');
@@ -101,7 +96,7 @@ class UserController extends Controller{
      * @param UserRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function update_password(UserPasswordRequest $request, User $user)
+    public function update_password(UpdateUserPasswordRequest $request, User $user)
     {
         $password = $request->validated();
         $user = User::where('id', Auth::id())->first();
