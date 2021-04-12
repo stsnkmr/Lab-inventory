@@ -25,6 +25,9 @@ Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
     Route::get('/user/change_password', 'UserController@change_password');
     Route::post('/user/change_password', 'UserController@update_password');
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/shop', 'ShopController@index');
+    Route::resource('/shop/item', 'ItemController');
+    Route::get('/shop/seller', 'SellerController@index');
 });
 Auth::routes([
     'verify'   => true, // メール確認機能（※5.7系以上のみ）
